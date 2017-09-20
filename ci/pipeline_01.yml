@@ -1,5 +1,10 @@
 ---
 resources:
+- name: flight-school
+  type: git
+  source:
+    uri: https://github.com/dbscope1582/flight-school.git
+    branch: dockerTutorial
 - name: flight-school-docker-image
   type: docker-image
   source:
