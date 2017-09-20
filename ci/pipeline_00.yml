@@ -1,0 +1,30 @@
+---
+resources:
+- name: flight-school
+  type: git
+  source:
+    uri: https://github.com/dbscope1582/flight-school.git
+    branch: dockerTutorial
+
+jobs:
+- name: test
+  plan:
+  - get: flight-school
+  - task: run-tests
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: ruby
+
+      inputs:
+      - name: flight-school
+      run:
+        path: /bin/bash
+        args:
+        - -c
+        - |
+          cd flight-school
+          bundle install
+          bundle exec rspec
